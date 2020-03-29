@@ -124,10 +124,11 @@ def training_loop(
     tf_config               = {},       # Options for tflib.init_tf().
     G_smoothing_kimg        = 10.0,     # Half-life of the running average of generator weights.
     D_repeats               = 2,        # How many times the discriminator is trained per G iteration.
-    minibatch_repeats       = 1,        # Number of minibatches to run before adjusting training parameters.
+    # minibatch_repeats       = 1,        # Number of minibatches to run before adjusting training parameters.
+    minibatch_repeats       = 4,        # Using StyleGan original value
     reset_opt_for_new_lod   = True,     # Reset optimizer internal state (e.g. Adam moments) when new layers are introduced?
-    total_kimg              = 20000,    # Total length of the training, measured in thousands of real images.
-    mirror_augment          = True,    # Enable mirror augment?
+    total_kimg              = 5115,    # Total length of the training, measured in thousands of real images.
+    mirror_augment          = False,    # Enable mirror augment?
     drange_net              = [-1,1],   # Dynamic range used when feeding image data to the networks.
     image_snapshot_ticks    = 1,        # How often to export image snapshots?
     network_snapshot_ticks  = 10,       # How often to export network snapshots?
