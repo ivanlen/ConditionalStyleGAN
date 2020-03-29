@@ -66,6 +66,8 @@ class TFRecordDataset:
         self._cur_minibatch     = -1
         self._cur_lod           = -1
 
+        print(self.tfrecord_dir)
+
         # List tfrecords files and inspect their shapes.
         print("##################################")
         print("TF_DIRECTORY: ", self.tfrecord_dir)
