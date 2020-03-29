@@ -293,11 +293,15 @@ def unpickle(file):
     return dict
 
 
-def create_from_images(tfrecord_dir, image_dir, shuffle, add_condition):
+def create_from_images(tfrecord_dir, image_and_label_dir, shuffle, add_condition):
+    image_dir = '{}/{}'.format(image_and_label_dir, 'images/')
+    label_dir = '{}/{}'.format(image_and_label_dir, 'labels/')
     print("ADD CONDITION ", add_condition)
-    print('Loading images from "%s"' % image_dir)
+    print('Loading images and labels from "%s"' % image_and_label_dir)
+    print('Images dir: {}'.format(image_dir))
+    print('Labels dir: {}'.format(label_dir))
 
-    all_data = unpickle('../data/mypickle.pickle')
+    all_data = unpickle('{}/labels.pickle'.format(label_dir))
     image_filenames_temp = all_data["Filenames"]
     conditions_all = all_data["Labels"] #for others use Clusters
     assert len(conditions_all) == len(image_filenames_temp)
@@ -457,7 +461,7 @@ def execute_cmdline(argv):
     p = add_command(    'create_from_images', 'Create dataset from a directory full of images.',
                                             'create_from_images datasets/mydataset myimagedir')
     p.add_argument(     'tfrecord_dir',     help='New dataset directory to be created')
-    p.add_argument(     'image_dir',        help='Directory containing the images')
+    p.add_argument(     'image_and_and_label_dir_dir',  help='Directory containing the images')
     p.add_argument(     '--shuffle',        help='Randomize image order (default: 1)', type=int, default=1)
     p.add_argument(     'add_condition', help='1 if include labels', type=int, default=0)
 
